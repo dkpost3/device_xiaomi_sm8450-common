@@ -11,7 +11,6 @@ ro.vendor.oem.psno u:object_r:vendor_sno_prop:s0
 ro.vendor.oem.sno u:object_r:vendor_sno_prop:s0
 
 # Fingerprint
-persist.vendor.fingerprint. u:object_r:vendor_fp_prop:s0
 persist.vendor.fpc. u:object_r:vendor_fp_prop:s0
 persist.vendor.sys.fp. u:object_r:vendor_fp_prop:s0
 persist.vendor.sys.fp.info u:object_r:vendor_fp_info_prop:s0
@@ -35,3 +34,6 @@ vendor.sys.rpmb_state u:object_r:vendor_payment_security_prop:s0
 
 # Thermal
 vendor.sys.thermal.data.path u:object_r:vendor_thermal_normal_prop:s0
+
+# esim
+ro.vendor.miui.singlesim u:object_r:vendor_miui_singlesim_prop:s0

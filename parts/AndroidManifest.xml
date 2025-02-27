@@ -17,8 +17,6 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.lineageos.settings"
-    android:versionCode="1"
-    android:versionName="1.0"
     android:sharedUserId="android.uid.system">
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
@@ -108,5 +106,16 @@
             android:permission="RefreshService">
         </service>
 
+        <service
+            android:name=".thermal.ThermalTileService"
+            android:icon="@drawable/ic_thermal"
+            android:label="@string/thermal_title"
+            android:exported="true"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action
+                    android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
     </application>
 </manifest>

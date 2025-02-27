@@ -8,6 +8,9 @@ genfscon sysfs /devices/platform/soc/soc:qcom,dsi-display-primary/doze_mode     
 # Fingerprint
 genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc u:object_r:vendor_sysfs_fingerprint:s0
 
+# FPS info
+genfscon sysfs /class/drm/card0/sde-crtc-0/measured_fps    u:object_r:vendor_sysfs_graphics:s0
+
 # Sensors
 genfscon sysfs /devices/virtual/touch/touch_dev/fod_finger_state u:object_r:vendor_sysfs_sensors:s0
 genfscon sysfs /devices/virtual/touch/touch_dev/fod_longpress_gesture_enabled u:object_r:vendor_sysfs_sensors:s0
@@ -30,3 +33,20 @@ genfscon sysfs /devices/platform/soc/soc:fingerprint_fpc/wakeup/wakeup u:object_
 # Touchscreen
 genfscon sysfs /devices/platform/goodix_ts.0/wakeup u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/virtual/touch/touch_dev/bump_sample_rate u:object_r:vendor_sysfs_touch:s0
+
+# new
+genfscon sysfs /devices/platform/soc/a90000.i2c/i2c-4/4-0051/wakeup/wakeup38 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:xm_battmngr/power_supply/usb/wakeup28 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/990000.i2c/i2c-2/2-006a/wakeup/wakeup36 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:xm_battmngr/power_supply/battery/wakeup26 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/990000.i2c/i2c-2/2-004e/tcpc/type_c_port0/dual-role-type_c_port0/wakeup34 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/990000.i2c/i2c-2/2-004e/tcpc/type_c_port0/wakeup32 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/a84000.i2c/i2c-3/3-0028/wakeup/wakeup40 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/990000.i2c/i2c-2/2-004e/tcpc/type_c_port0/wakeup30 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/a90000.i2c/i2c-4/4-0055/wakeup/wakeup39 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/990000.i2c/i2c-2/2-0051/wakeup/wakeup29 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:xm_battmngr/wakeup/wakeup27 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/990000.i2c/i2c-2/2-004e/wakeup/wakeup35 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/980000.spi/spi_master/spi0/spi0.0/synaptics_tcm.0/wakeup/wakeup25 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/990000.i2c/i2c-2/2-004e/tcpc/type_c_port0/wakeup33 u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/990000.i2c/i2c-2/2-004e/tcpc/type_c_port0/wakeup31 u:object_r:sysfs_wakeup:s0

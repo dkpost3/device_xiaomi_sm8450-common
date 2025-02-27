@@ -7,6 +7,9 @@
 # libqtigefar depends on libar-pal, which is decommonized
 # vendor.qti.hardware.AGMIPC@1.0-impl depends on libagm, which is decommonized
 
+# esim
+product/priv-app/EuiccGoogle/EuiccGoogle.apk;PRESIGNED|9fab80174db95e79a6cc3dad8cb37252678ac9d1
+
 # ADSP
 vendor/bin/adsprpcd
 vendor/etc/init/vendor.qti.adsprpc-guestos-service.rc
@@ -44,8 +47,8 @@ vendor/lib64/vendor.qti.hardware.AGMIPC@1.0-impl.so;DISABLE_CHECKELF
 
 # Audio soundfx
 vendor/lib64/soundfx/libasphere.so
-vendor/lib64/soundfx/libmisoundfx.so
 vendor/lib64/soundfx/libshoebox.so
+vendor/lib64/soundfx/libmisoundfx.so
 
 # Bluetooth
 vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
@@ -313,6 +316,13 @@ vendor/lib64/hw/vendor.qti.esepowermanager@1.1-impl.so
 vendor/lib64/vendor.qti.esepowermanager@1.0.so
 vendor/lib64/vendor.qti.esepowermanager@1.1.so
 
+# EMBMS
+vendor/bin/embmsslServer
+vendor/etc/init/init.embmssl_server.rc
+vendor/lib64/libembmsservice.so
+vendor/lib64/vendor.qti.hardware.embmssl@1.0.so
+vendor/lib64/vendor.qti.hardware.embmssl@1.1.so
+
 # FM
 vendor/etc/init.qti.fm.sh
 vendor/etc/init/init.qti.fm.rc
@@ -325,7 +335,7 @@ vendor/etc/init/android.hardware.gatekeeper@1.0-service-qti.rc
 vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so
 
 # GNSS - from ingot-user 14 UKQ1.240227.165 release-keys
-vendor/app/CACertService/CACertService.apk|ea18679b8a6cdf4f9f00b7fb5d7a86e12be38f23
+vendor/app/CACertService/CACertService.apk|875317870c5dcf503eaeebf5971310c04ae5e331
 vendor/bin/edgnss-daemon|11e295ebe350de7312a2ab97f25ccbbae48ed8a4
 vendor/bin/loc_launcher|dbc5addc025360fd04dec5b024d476514a6f613f
 vendor/bin/lowi-server;DISABLE_CHECKELF|0a8998f8190c282a14fed9e33691b54a2dc6d3e9
@@ -440,6 +450,13 @@ vendor/etc/init/android.hardware.security.keymint-service-qti.rc
 vendor/etc/permissions/android.hardware.hardware_keystore.xml:vendor/etc/permissions/android.hardware.hardware_keystore.km100.xml
 vendor/etc/vintf/manifest/android.hardware.security.keymint-service-qti.xml
 vendor/lib64/libqtikeymint.so
+
+# Listen
+vendor/lib64/libeai_fixed.so
+vendor/lib64/libeai_float.so
+vendor/lib64/liblistensoundmodel2vendor.so
+vendor/lib64/vendor.qti.hardware.ListenSoundModel@1.0-impl.so
+vendor/lib64/vendor.qti.hardware.ListenSoundModel@1.0.so
 
 # Media
 vendor/bin/hw/vendor.qti.media.c2@1.0-service
@@ -559,7 +576,7 @@ vendor/lib64/hw/vendor.qti.hardware.alarm@1.0-impl.so
 vendor/lib64/vendor.qti.hardware.alarm@1.0.so
 
 # QCC - from ingot-user 14 UKQ1.240227.165 release-keys
-system_ext/app/QCC/QCC.apk|d3cbc08cb41bb36ff705109c4c49eba6083a5807
+system_ext/app/QCC/QCC.apk|1aba9650f4191a36fb22c17962fcb9d8473c7dd8
 system_ext/bin/qccsyshal@1.2-service|1d3fa5feff11e463204d31927cfb659f707989e1
 system_ext/etc/init/vendor.qti.hardware.qccsyshal@1.2-service.rc|7279d09cf4d6f594dbab5c288ec16101bd668a95
 system_ext/lib64/libqcc.so|a9dbbaebc96295adb9f996268d540170e0ab9f25
@@ -686,7 +703,7 @@ vendor/bin/qtigetprop
 vendor/bin/qtisetprop
 vendor/bin/rmt_storage
 vendor/bin/shsusrd
-vendor/bin/ssgqmigd
+vendor/bin/ssgqmigd64
 vendor/bin/ssgtzd
 vendor/bin/tftp_server
 vendor/etc/data/dsi_config.xml
@@ -711,6 +728,28 @@ vendor/etc/telephony_packages.xml
 vendor/etc/vintf/manifest/dataconnection-saidl.xml
 vendor/etc/vintf/manifest/qtiradio-saidl.xml
 vendor/etc/vintf/manifest/vendor.qti.hardware.radio.ims.xml
+-vendor/etc/qcril_database/upgrade/config/10.0_config.sql
+-vendor/etc/qcril_database/upgrade/config/11.0_config.sql
+-vendor/etc/qcril_database/upgrade/config/12.0_config.sql
+-vendor/etc/qcril_database/upgrade/config/13.0_config.sql
+-vendor/etc/qcril_database/upgrade/config/14.0_config.sql
+-vendor/etc/qcril_database/upgrade/config/6.0_config.sql
+-vendor/etc/qcril_database/upgrade/config/7.0_config.sql
+-vendor/etc/qcril_database/upgrade/config/8.0_config.sql
+-vendor/etc/qcril_database/upgrade/config/9.0_config.sql
+-vendor/etc/qcril_database/upgrade/other/0_initial_qcrilnr.sql
+-vendor/etc/qcril_database/upgrade/other/10_version_update_ecc_table.sql
+-vendor/etc/qcril_database/upgrade/other/11_version_update_ecc_table.sql
+-vendor/etc/qcril_database/upgrade/other/12_version_update_ecc_table.sql
+-vendor/etc/qcril_database/upgrade/other/1_version_intro_qcrilnr.sql
+-vendor/etc/qcril_database/upgrade/other/2_version_add_wps_config_qcrilnr.sql
+-vendor/etc/qcril_database/upgrade/other/3_version_update_wps_config_qcrilnr.sql
+-vendor/etc/qcril_database/upgrade/other/4_version_update_ecc_table_qcrilnr.sql
+-vendor/etc/qcril_database/upgrade/other/5_version_update_ecc_table_qcrilnr.sql
+-vendor/etc/qcril_database/upgrade/other/6_version_change_property_table_qcrilnr.sql
+-vendor/etc/qcril_database/upgrade/other/7_version_update_ecc_table_qcrilnr.sql
+-vendor/etc/qcril_database/upgrade/other/8_version_update_ecc_table.sql
+-vendor/etc/qcril_database/upgrade/other/9_version_update_ecc_table.sql
 vendor/etc/xiaomi_ecc_list.xml
 vendor/etc/xiaomi_ecc_list_preference.xml
 vendor/lib64/com.qualcomm.qti.imscmservice@1.0.so
@@ -855,9 +894,9 @@ vendor/lib64/vendor.qti.imsrtpservice@3.0.so;MODULE_SUFFIX=_vendor
 vendor/bin/hw/vendor.qti.secure_element@1.2-service
 vendor/etc/init/vendor.qti.secure_element@1.2-service.rc
 vendor/lib64/android.hardware.secure_element@1.0-impl.so
-vendor/lib64/jcos_nq_client.so
-vendor/lib64/ls_nq_client.so
-vendor/lib64/se_nq_extn_client.so
+vendor/lib64/jcos_nq_client-v1.so
+vendor/lib64/ls_nq_client-v1.so
+vendor/lib64/se_nq_extn_client-v1.so
 
 # Sensors
 vendor/bin/hw/vendor.qti.hardware.sensorscalibrate@1.0-service

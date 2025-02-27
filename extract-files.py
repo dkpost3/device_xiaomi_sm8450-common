@@ -86,6 +86,17 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed(
             'libgrpc++_unsecure.so', 'libgrpc++_unsecure_prebuilt.so'
         ),
+    'vendor/etc/vintf/manifest/c2_manifest_vendor.xml': blob_fixup()
+        .regex_replace('.+dolby.+\n', ''),
+    (
+       'vendor/etc/media_codecs_cape.xml',
+       'vendor/etc/media_codecs_diwali_v0.xml',
+       'vendor/etc/media_codecs_diwali_v1.xml',
+       'vendor/etc/media_codecs_diwali_v2.xml',
+       'vendor/etc/media_codecs_taro.xml',
+       'vendor/etc/media_codecs_ukee.xml',
+    ): blob_fixup()
+        .regex_replace('.+media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).+\n', ''),
     'vendor/etc/seccomp_policy/atfwd@2.0.policy': blob_fixup()
         .add_line_if_missing('gettid: 1'),
     'vendor/etc/seccomp_policy/c2audio.vendor.ext-arm64.policy': blob_fixup()
@@ -94,15 +105,13 @@ blob_fixups: blob_fixups_user_type = {
         .add_line_if_missing('gettid: 1'),
     'vendor/etc/vintf/manifest/c2_manifest_vendor.xml': blob_fixup()
         .regex_replace('.+dolby.+\n', ''),
-    (
-        'vendor/lib64/libqcrilNr.so',
-        'vendor/lib64/libril-db.so',
-    ): blob_fixup().binary_regex_replace(
-        rb'persist\.vendor\.radio\.poweron_opt',
-        b'persist.vendor.radio.poweron_ign',
-    ),
     'vendor/lib64/vendor.libdpmframework.so': blob_fixup()
         .add_needed('libhidlbase_shim.so'),
+    'vendor/lib64/soundfx/libmisoundfx.so': blob_fixup()
+        .replace_needed(
+            'libstagefright_foundation.so',
+            'libstagefright_foundation-v33.so',
+    ),
 }  # fmt: skip
 
 module = ExtractUtilsModule(

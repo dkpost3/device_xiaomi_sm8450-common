@@ -7,4 +7,19 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="hidl" optional="true">
+        <name>vendor.qti.hardware.embmssl</name>
+        <version>1.0-1</version>
+        <interface>
+            <name>IEmbms</name>
+            <instance>embmsslServer0</instance>
+        </interface>
+    </hal>
+    <hal format="aidl" optional="true">
+        <name>vendor.qti.hardware.embmssl</name>
+        <interface>
+            <name>IEmbms</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
 </compatibility-matrix>
