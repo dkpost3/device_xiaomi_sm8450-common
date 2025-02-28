@@ -79,7 +79,8 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer:64 \
     libqcomvoiceprocessing:64 \
     libsndcardparser:64 \
-    libvolumelistener:64
+    libvolumelistener:64 \
+    libhfp_pal:64
 
 $(foreach sku, taro diwali cape ukee parrot, \
     $(eval PRODUCT_COPY_FILES += \
@@ -372,6 +373,7 @@ $(foreach sku, taro diwali cape ukee, \
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/xiaomi \
+    hardware/qcom-caf/bootctrl \
     vendor/qcom/opensource/usb/etc
 
 # Telephony

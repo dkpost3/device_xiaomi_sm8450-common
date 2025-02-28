@@ -49,9 +49,6 @@ vendor.audio_hal.period_size=192
 vendor.qc2audio.per_frame.flac.dec.enabled=true
 vendor.qc2audio.suspend.enabled=true
 
-# Battery
-persist.vendor.battery.health=true
-
 # Bluetooth
 bluetooth.hardware.power.idle_cur_ma=6
 bluetooth.hardware.power.operating_voltage_mv=3700
@@ -91,29 +88,8 @@ ro.hardware.camera=xiaomi
 # Chipset
 ro.soc.manufacturer=QTI
 
-# Dolby Atmos
-vendor.audio.dolby.ds2.enabled=false
-vendor.audio.dolby.ds2.hardbypass=false
-
 # Dex2oat
 dalvik.vm.dex2oat64.enabled=true
-
-# DPM
-persist.vendor.dpm.vndr.feature=1
-persist.vendor.dpm.vndr.halservice.enable=1
-persist.vendor.dpm.vndr.idletimer.mode=default
-
-# DRM
-drm.service.enabled=true
-
-# FRP
-ro.frp.pst=/dev/block/bootdevice/by-name/frp
-
-# FUSE passthrough
-persist.sys.fuse.passthrough.enable=true
-
-# Gatekeeper
-vendor.gatekeeper.disable_spu=true
 
 # Display
 vendor.display.comp_mask=0
@@ -136,26 +112,46 @@ vendor.display.enable_rc_support=1
 vendor.display.use_smooth_motion=1
 vendor.display.vds_allow_hwc=0
 
+# Dolby Atmos
+vendor.audio.dolby.ds2.enabled=false
+vendor.audio.dolby.ds2.hardbypass=false
+
+# DPM
+persist.vendor.dpm.vndr.feature=1
+persist.vendor.dpm.vndr.halservice.enable=1
+persist.vendor.dpm.vndr.idletimer.mode=default
+
+# DRM
+drm.service.enabled=true
+
+# FRP
+ro.frp.pst=/dev/block/bootdevice/by-name/frp
+
+# FUSE passthrough
+persist.sys.fuse.passthrough.enable=true
+
+# Gatekeeper
+vendor.gatekeeper.disable_spu=true
+
+
 # Graphics
 debug.egl.hw=0
 debug.sf.auto_latch_unsignaled=0
 debug.sf.disable_client_composition_cache=1
-debug.sf.enable_transaction_tracing=false
-debug.sf.enable_adpf_cpu_hint=true
-debug.sf.early.app.duration=16600000
-debug.sf.early.sf.duration=16600000
-debug.sf.earlyGl.app.duration=16600000
-debug.sf.earlyGl.sf.duration=16600000
+debug.sf.early.app.duration=13666666
+debug.sf.early.sf.duration=15666666
+debug.sf.earlyGl.app.duration=13666666
+debug.sf.earlyGl.sf.duration=15666666
 debug.sf.enable_gl_backpressure=0
 debug.sf.enable_hwc_vds=1
 debug.sf.hw=0
-debug.sf.latch_unsignaled=1
-debug.sf.late.app.duration=16600000
-debug.sf.late.sf.duration=10500000
+debug.sf.late.app.duration=13666666
+debug.sf.late.sf.duration=15666666
 debug.sf.predict_hwc_composition_strategy=0
 debug.sf.set_idle_timer_ms=1000
 debug.sf.treat_170m_as_sRGB=1
 debug.sf.use_phase_offsets_as_durations=1
+debug.sf.defer_refresh_rate_when_off=1
 persist.sys.sf.color_mode=0
 persist.sys.sf.color_saturation=1.0
 persist.sys.sf.native_mode=258
@@ -177,14 +173,15 @@ ro.surface_flinger.use_content_detection_for_refresh_rate=true
 ro.surface_flinger.wcg_composition_dataspace=143261696
 vendor.gralloc.disable_ubwc=0
 
-# HWUI
-debug.hwui.use_hint_manager=true
-
 # Media
 debug.c2.use_dmabufheaps=1
 debug.stagefright.c2inputsurface=-1
 debug.stagefright.ccodec=4
 debug.stagefright.omx_default_rank=0
+
+# Netflix
+ro.netflix.bsp_rev=Q8450-34634-1
+
 
 # Incremental
 ro.incremental.enable=yes
