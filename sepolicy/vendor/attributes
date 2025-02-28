@@ -1,3 +1,13 @@
 attribute hal_dms;
 attribute hal_dms_client;
 attribute hal_dms_server;
+
+# Camera
+attribute hal_quickcamera;
+attribute hal_quickcamera_client;
+attribute hal_quickcamera_server;
+
+# SLA
+attribute hal_slaservice;
+attribute hal_slaservice_client;
+attribute hal_slaservice_server;

@@ -12,17 +12,17 @@ on fs
     mkdir /mnt/vendor/persist/audio 0755 system system
     mkdir /mnt/vendor/persist/qca6490/ 0700 system system
 
+# Euicc
+on post-fs && property:ro.boot.hwc=CN
+    # Remove euicc stuffs on CN Variant
+    mount none /dev/null /product/overlay/ZiyiEuiccOverlay.apk bind
+
 on boot
     # modem
     chmod 0777 /dev/smd8
     chown radio radio /dev/smd8
     mkdir /data/vendor/modem 0777 radio radio
 
-    chown system system /sys/class/thermal/thermal_message/sconfig
-    chown system system /sys/class/thermal/thermal_message/charger_temp
-    chown system system /sys/class/thermal/thermal_message/board_sensor_temp_comp
-    chown system system /sys/class/thermal/thermal_message/cpu_nolimit_temp
-    chown system system /sys/class/thermal/thermal_message/balance_mode
     chown cameraserver cameraserver /sys/class/thermal/thermal_message/flash_state
     chown system system /sys/module/perf_helper/mimd/mimdtrigger
 
@@ -115,9 +115,23 @@ on post-fs-data
     mkdir /mnt/vendor/persist/fpc 0770 system system
     mkdir /mnt/vendor/persist/goodix 0770 system system
 
+    # Setup dex2oat thread count and cpuset
+    setprop dalvik.vm.dex2oat-cpu-set 0,1,2,3,4,5,6
+    setprop dalvik.vm.dex2oat-threads 6
+
 on property:sys.boot_completed=1
     # Set thermal mode to mgame
     write /sys/devices/virtual/thermal/thermal_message/sconfig 20
+
+on property:vendor.post_boot.parsed=1
+    # Set restricted cpuset to the same CPUs as system-background
+    copy /dev/cpuset/system-background/cpus /dev/cpuset/restricted/cpus
+
+    # Set background cpuset
+    write /dev/cpuset/background/cpus 0-1
+
+    # Setup foreground cpuset for display composer.
+    write /dev/cpuset/foreground/cpus 0-6
 
 on property:persist.sys.xtra-daemon.enabled=*
     restart loc_launcher

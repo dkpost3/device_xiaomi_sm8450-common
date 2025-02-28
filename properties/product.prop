@@ -1,3 +1,7 @@
 # Audio
 audio.offload.min.duration.secs=30
 media.stagefright.audio.deep=false
+
+# Blur
+ro.sf.blurs_are_expensive=1
+ro.surface_flinger.supports_background_blur=1

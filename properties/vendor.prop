@@ -39,7 +39,7 @@ vendor.audio.flac.sw.decoder.24bit=true
 vendor.audio.hal.boot.timeout.ms=20000
 vendor.audio.hdr.record.enable=false
 vendor.audio.hw.aac.encoder=false
-vendor.audio.offload.buffer.size.kb=32
+vendor.audio.offload.buffer.size.kb=256
 vendor.audio.safx.pbe.enabled=false
 vendor.audio.ull_record_period_multiplier=2
 vendor.audio.ultrasound.stoplatency=60
@@ -48,6 +48,9 @@ vendor.audio.volume.headset.gain.depcal=true
 vendor.audio_hal.period_size=192
 vendor.qc2audio.per_frame.flac.dec.enabled=true
 vendor.qc2audio.suspend.enabled=true
+
+# Battery
+persist.vendor.battery.health=true
 
 # Bluetooth
 bluetooth.hardware.power.idle_cur_ma=6
@@ -85,8 +88,32 @@ persist.vendor.vcb.enable=false
 ro.camera.enableCamera1MaxZsl=1
 ro.hardware.camera=xiaomi
 
+# Chipset
+ro.soc.manufacturer=QTI
+
+# Dolby Atmos
+vendor.audio.dolby.ds2.enabled=false
+vendor.audio.dolby.ds2.hardbypass=false
+
 # Dex2oat
 dalvik.vm.dex2oat64.enabled=true
+
+# DPM
+persist.vendor.dpm.vndr.feature=1
+persist.vendor.dpm.vndr.halservice.enable=1
+persist.vendor.dpm.vndr.idletimer.mode=default
+
+# DRM
+drm.service.enabled=true
+
+# FRP
+ro.frp.pst=/dev/block/bootdevice/by-name/frp
+
+# FUSE passthrough
+persist.sys.fuse.passthrough.enable=true
+
+# Gatekeeper
+vendor.gatekeeper.disable_spu=true
 
 # Display
 vendor.display.comp_mask=0
@@ -109,41 +136,22 @@ vendor.display.enable_rc_support=1
 vendor.display.use_smooth_motion=1
 vendor.display.vds_allow_hwc=0
 
-# Dolby Atmos
-vendor.audio.dolby.ds2.enabled=false
-vendor.audio.dolby.ds2.hardbypass=false
-
-# DPM
-persist.vendor.dpm.vndr.feature=1
-persist.vendor.dpm.vndr.halservice.enable=1
-persist.vendor.dpm.vndr.idletimer.mode=default
-
-# DRM
-drm.service.enabled=true
-
-# FRP
-ro.frp.pst=/dev/block/bootdevice/by-name/frp
-
-# FUSE passthrough
-persist.sys.fuse.passthrough.enable=true
-
-# Gatekeeper
-vendor.gatekeeper.disable_spu=true
-
 # Graphics
 debug.egl.hw=0
 debug.sf.auto_latch_unsignaled=0
 debug.sf.disable_client_composition_cache=1
-debug.sf.early.app.duration=13666666
-debug.sf.early.sf.duration=15666666
-debug.sf.earlyGl.app.duration=13666666
-debug.sf.earlyGl.sf.duration=15666666
-debug.sf.enable_gl_backpressure=1
+debug.sf.enable_transaction_tracing=false
+debug.sf.enable_adpf_cpu_hint=true
+debug.sf.early.app.duration=16600000
+debug.sf.early.sf.duration=16600000
+debug.sf.earlyGl.app.duration=16600000
+debug.sf.earlyGl.sf.duration=16600000
+debug.sf.enable_gl_backpressure=0
 debug.sf.enable_hwc_vds=1
 debug.sf.hw=0
 debug.sf.latch_unsignaled=1
-debug.sf.late.app.duration=13666666
-debug.sf.late.sf.duration=15666666
+debug.sf.late.app.duration=16600000
+debug.sf.late.sf.duration=10500000
 debug.sf.predict_hwc_composition_strategy=0
 debug.sf.set_idle_timer_ms=1000
 debug.sf.treat_170m_as_sRGB=1
@@ -169,17 +177,20 @@ ro.surface_flinger.use_content_detection_for_refresh_rate=true
 ro.surface_flinger.wcg_composition_dataspace=143261696
 vendor.gralloc.disable_ubwc=0
 
-# Incremental
-ro.incremental.enable=yes
-
-# Keystore
-ro.hardware.keystore_desede=true
+# HWUI
+debug.hwui.use_hint_manager=true
 
 # Media
 debug.c2.use_dmabufheaps=1
 debug.stagefright.c2inputsurface=-1
 debug.stagefright.ccodec=4
 debug.stagefright.omx_default_rank=0
+
+# Incremental
+ro.incremental.enable=yes
+
+# Keystore
+ro.hardware.keystore_desede=true
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so

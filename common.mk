@@ -45,12 +45,12 @@ PRODUCT_PACKAGES += \
     otapreopt_script
 
 # API
-PRODUCT_SHIPPING_API_LEVEL := 31
 BOARD_SHIPPING_API_LEVEL := 31
+PRODUCT_SHIPPING_API_LEVEL := $(BOARD_SHIPPING_API_LEVEL)
 
 # Audio
 PRODUCT_PACKAGES += \
-    android.hardware.audio@7.0-impl:64 \
+    android.hardware.audio@7.1-impl:64 \
     android.hardware.audio.effect@7.0-impl:64 \
     android.hardware.audio.service \
     android.hardware.soundtrigger@2.3-impl:64 \
@@ -113,6 +113,7 @@ PRODUCT_PACKAGES_DEBUG += \
 
 # Camera
 PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.camera.concurrent.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.concurrent.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.camera.full.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.full.xml \
@@ -127,6 +128,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.qti.display_boot.rc \
     init.qti.display_boot.sh
+
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.display.config-V2-ndk_platform.vendor:64
 
 PRODUCT_COPY_FILES += \
     hardware/qcom-caf/sm8450/display/config/snapdragon_color_libs_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/snapdragon_color_libs_config.xml
@@ -228,6 +232,15 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.keystore.app_attest_key.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.keystore.app_attest_key.xml
 
+# e-SIM
+PRODUCT_COPY_FILES += \
+    device/xiaomi/sm8450-common/configs/euicc/default-permissions_com.google.android.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default-permissions_com.google.android.euicc.xml \
+    device/xiaomi/sm8450-common/configs/euicc/privapp_allowlist_com.google.android.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp_allowlist_com.google.android.euicc.xml
+
+# Allow users to retain eSIM profiles after factory reset of user data
+PRODUCT_PRODUCT_PROPERTIES += \
+    masterclear.allow_retain_esim_profiles_after_fdr=true
+
 # Lineage Health
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
@@ -236,8 +249,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.qti.media.rc \
     init.qti.media.sh \
-    libOmxCore \
-    libstagefrighthw
+    libstagefright_softomx_plugin.vendor
 
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
@@ -254,6 +266,7 @@ PRODUCT_COPY_FILES += \
 
 # Network
 PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.ipsec_tunnel_migration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnel_migration.xml \
     frameworks/native/data/etc/android.software.ipsec_tunnels.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.ipsec_tunnels.xml
 
 # NFC / Secure Element
@@ -284,7 +297,8 @@ $(foreach sku_out, $(TARGET_COPY_OUT_NFC_SKU_PERMISSIONS), \
 
 # Overlays
 PRODUCT_PACKAGES += \
-    CarrierConfigResCommon \
+    CarrierConfigRes \
+    CarrierConfigResMiui \
     FrameworksResCommon \
     SettingsResCommon \
     SystemUIResCommon \
@@ -300,7 +314,8 @@ PRODUCT_PACKAGES += \
     SettingsResXiaomi \
     WifiResTarget \
     WifiResTarget_cape \
-    WifiResTarget_spf
+    WifiResTarget_spf \
+    ZiyiEuiccOverlay
 
 # Partitions
 PRODUCT_PACKAGES += \
@@ -356,10 +371,12 @@ $(foreach sku, taro diwali cape ukee, \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    hardware/xiaomi
+    hardware/xiaomi \
+    vendor/qcom/opensource/usb/etc
 
 # Telephony
 PRODUCT_PACKAGES += \
+    XiaomiEuicc \
     extphonelib \
     extphonelib-product \
     extphonelib.xml \
@@ -374,6 +391,7 @@ PRODUCT_PACKAGES += \
     qti-telephony-utils-prd \
     qti_telephony_utils.xml \
     qti_telephony_utils_prd.xml \
+    QtiTelephonyCompat \
     telephony-ext \
     xiaomi-telephony-stub
 
@@ -386,8 +404,10 @@ PRODUCT_BOOT_JARS += \
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.cdma.xml \
+    frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.euicc.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.telephony.ims.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.ims.xml \
+    frameworks/native/data/etc/android.hardware.telephony.mbms.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.telephony.mbms.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml
 
 # Thermal
@@ -425,11 +445,12 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.sh \
     usb_compositions.conf
 
-PRODUCT_SOONG_NAMESPACES += vendor/qcom/opensource/usb/etc
-
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.host.xml
+
+# VNDK
+PRODUCT_EXTRA_VNDK_VERSIONS := 30 31 32 33 34
 
 # Vendor service manager
 PRODUCT_PACKAGES += \
@@ -455,6 +476,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/bin/init.qti.kernel.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qti.kernel.sh \
     $(LOCAL_PATH)/rootdir/bin/init.qti.write.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qti.write.sh \
     $(LOCAL_PATH)/rootdir/bin/vendor_modprobe.sh:$(TARGET_COPY_OUT_VENDOR)/bin/vendor_modprobe.sh
+
 
 # Verified boot
 PRODUCT_COPY_FILES += \
@@ -495,8 +517,9 @@ PRODUCT_COPY_FILES += \
 
 # WiFi Display
 PRODUCT_PACKAGES += \
+    libwfdaac_vendor:64 \
     android.media.audio.common.types-V2-cpp:64 \
-    libwfdaac_vendor:64
+    vendor.qti.hardware.display.config-V5-ndk:64
 
 PRODUCT_BOOT_JARS += \
     WfdCommon
